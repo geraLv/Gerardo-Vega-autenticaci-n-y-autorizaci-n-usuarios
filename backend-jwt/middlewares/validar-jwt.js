@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken';
 
-import { SECRET_KEY } from 'backend-/config/env.js';
-import { database } from 'backend-/db/database.js';
+import { SECRET_KEY } from '../config/env.js';
+import { pool } from '../db/database.js';
 
 // Middleware para verificar el token JWT
 export default (req, res, next) => {
