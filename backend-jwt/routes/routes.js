@@ -1,15 +1,17 @@
-import  pkg  from "express"
-const rutas = pkg()
-
+import { Router } from "express";
 import {
-    cerrar_sesion,
-    dato_sesion,
-    inicio_sesion,
-    registro
-} from "../controllers/controllers.js"
+  logout,
+  session,
+  register,
+  login,
+} from "../controllers/controllers.js";
+import validarJwt from "../middlewares/validar-jwt.js";
 
-rutas.post('/login', inicio_sesion)
-rutas.get('/session', dato_sesion) 
-rutas.post('/logout', cerrar_sesion)
-rutas.post('/register', registro)
-export { rutas }
+const ruter = Router();
+
+ruter.get("/session", validarJwt, session);
+ruter.post("/logout", logout);
+ruter.post("/register", register);
+ruter.post("/login", login);
+
+export { ruter };
