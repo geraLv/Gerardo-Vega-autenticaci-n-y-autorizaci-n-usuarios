@@ -38,11 +38,11 @@ export const login = async (req, res) => {
 export const register = async (req, res) => {
   const { username, password } = req.body;
   const [consulta] = await conn.query(
-    "INSERT INTO users (username, password) VALUES(?,?)",
+    "INSERT INTO user (username, password) VALUES(?,?)",
     [username, password]
   );
   console.log(consulta);
-  const [userfind] = await conn.execute("SELECT * FROM users WHERE id = ?", [
+  const [userfind] = await conn.execute("SELECT * FROM user WHERE id = ?", [
     consulta.insertId,
   ]);
 
